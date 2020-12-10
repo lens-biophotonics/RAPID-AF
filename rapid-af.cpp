@@ -112,14 +112,15 @@ double spectralRatio(const Mat &spectrum, int radius, int thickness)
     return sum(masked).val[0] / sum(spectrum).val[0];
 }
 
-bool checkImageQuality(Mat &image, double stdVarThreshold, double sRatioThreshold)
+bool checkImageQuality(Mat &image, double stdVarThreshold, double sRatioThreshold, int radius,
+                       int thickness)
 {
     Scalar mean, stddev;
 
     meanStdDev(image, mean, stddev);
 
     double stdVar = stddev.val[0] / mean.val[0];
-    double sRatio = spectralRatio(dftSpectrum(image), 30, 5);
+    double sRatio = spectralRatio(dftSpectrum(image), radius, thickness);
 
     return (stdVar > stdVarThreshold) && (sRatio > sRatioThreshold);
 }

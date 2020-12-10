@@ -6,9 +6,9 @@
 using namespace cv;
 
 struct Options {
+    bool multiThreading = true;
     uint padding = 100;
     double agreementThreshold = 5;
-    bool multiThreading = true;
 
     bool bin_enable = true;
     double bin_thresholdPercentage = 0.6;
@@ -30,7 +30,7 @@ Mat dog(const Mat &image, int ksize, double sigma1, double sigma2);
 Mat canny(const Mat &image, int ksize, double sigma, double alpha, double beta);
 
 Mat crossCorr(const Mat &image1, const Mat &image2, const uint padding);
-bool checkImageQuality(Mat &image, double stdVarThreshold, double sRatioThreshold);
+bool checkImageQuality(Mat &image, double stdVarThreshold, double sRatioThreshold, int radius, int thickness);
 
 Point2f align(const Mat &image1, const Mat &image2,
               const struct Options opt, bool * const ok = nullptr);
