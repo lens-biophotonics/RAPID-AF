@@ -130,12 +130,12 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
     Point maxLoc;
     Point upperLeft(opt.padding, opt.padding);
 
-    Point shiftBin, shiftDog, shiftCanny;
+    Point shifts[3];
     int c = 0;
 
     thread myTrheads[3];
 
-    auto bin_f = [&](){
+    auto bin_f = [&](int j){
         Mat bin1, bin2;
         bin1 = binarize(image1, opt.bin_thresholdPercentage);
         bin2 = binarize(image2, opt.bin_thresholdPercentage);
@@ -144,10 +144,10 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
 
         minMaxLoc(cc, &min, &max, nullptr, &maxLoc);
 
-        shiftBin = maxLoc - upperLeft;
+        shifts[j] = maxLoc - upperLeft;
     };
 
-    auto dog_f = [&](){
+    auto dog_f = [&](int j){
         Mat dog1, dog2;
         dog1 = dog(image1, opt.dog_ksize, opt.dog_sigma1, opt.dog_sigma2);
         dog2 = dog(image2, opt.dog_ksize, opt.dog_sigma1, opt.dog_sigma2);
@@ -156,10 +156,10 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
 
         minMaxLoc(cc, &min, &max, nullptr, &maxLoc);
 
-        shiftDog = maxLoc - upperLeft;
+        shifts[j] = maxLoc - upperLeft;
     };
 
-    auto canny_f = [&]() {
+    auto canny_f = [&](int j) {
         Mat canny1, canny2;
         canny1 = canny(image1, opt.canny_ksize, opt.canny_sigma, opt.canny_alpha, opt.canny_beta);
         canny2 = canny(image2, opt.canny_ksize, opt.canny_sigma, opt.canny_alpha, opt.canny_beta);
@@ -168,23 +168,23 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
 
         minMaxLoc(cc, &min, &max, nullptr, &maxLoc);
 
-        shiftCanny = maxLoc - upperLeft;
+        shifts[j] = maxLoc - upperLeft;
     };
 
     if (opt.bin_enable) {
         if (opt.multiThreading) {
-            myTrheads[c] = thread(bin_f);
+            myTrheads[c] = thread(bin_f, c);
         } else {
-            bin_f();
+            bin_f(c);
         }
         c++;
     }
 
     if (opt.dog_enable) {
         if (opt.multiThreading) {
-            myTrheads[c] = thread(dog_f);
+            myTrheads[c] = thread(dog_f, c);
         } else {
-            dog_f();
+            dog_f(c);
         }
         c++;
     }
@@ -192,9 +192,9 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
 
     if (opt.canny_enable) {
         if (opt.multiThreading) {
-            myTrheads[c] = thread(canny_f);
+            myTrheads[c] = thread(canny_f, c);
         } else {
-            canny_f();
+            canny_f(c);
         }
         c++;
     }
@@ -205,13 +205,17 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
         }
     }
 
-    Point2f finalShift = shiftBin + shiftDog + shiftCanny;
+    Point2f finalShift = shifts[0] + shifts[1] + shifts[2];
     finalShift /= c;
 
+    for (int i = c; i < 3; ++i) {
+        shifts[i] = shifts[0];
+    }
+
     if (ok != nullptr) {
-        double n1 = norm(Mat(shiftBin), Mat(shiftDog));
-        double n2 = norm(Mat(shiftBin), Mat(shiftCanny));
-        double n3 = norm(Mat(shiftDog), Mat(shiftCanny));
+        double n1 = norm(Mat(shifts[0]), Mat(shifts[1]));
+        double n2 = norm(Mat(shifts[0]), Mat(shifts[2]));
+        double n3 = norm(Mat(shifts[1]), Mat(shifts[2]));
 
         *ok = n1 < opt.agreementThreshold
               && n2 < opt.agreementThreshold
