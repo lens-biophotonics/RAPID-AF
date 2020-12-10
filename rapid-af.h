@@ -8,6 +8,7 @@ using namespace cv;
 struct Options {
     uint padding = 100;
     double agreementThreshold = 5;
+    bool multiThreading = true;
 
     bool bin_enable = true;
     double bin_thresholdPercentage = 0.6;

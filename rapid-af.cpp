@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <thread>
 #include <vector>
 
 #include "rapid-af.h"
@@ -125,7 +126,6 @@ bool checkImageQuality(Mat &image, double stdVarThreshold, double sRatioThreshol
 
 Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bool * const ok)
 {
-    Mat cc;
     double min, max;
     Point maxLoc;
     Point upperLeft(opt.padding, opt.padding);
@@ -133,44 +133,76 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
     Point shiftBin, shiftDog, shiftCanny;
     int c = 0;
 
-    if (opt.bin_enable) {
-        c++;
+    thread myTrheads[3];
+
+    auto bin_f = [&](){
         Mat bin1, bin2;
         bin1 = binarize(image1, opt.bin_thresholdPercentage);
         bin2 = binarize(image2, opt.bin_thresholdPercentage);
 
-        cc = crossCorr(bin1, bin2, opt.padding);
+        Mat cc = crossCorr(bin1, bin2, opt.padding);
 
         minMaxLoc(cc, &min, &max, nullptr, &maxLoc);
 
         shiftBin = maxLoc - upperLeft;
-    }
+    };
 
-    if (opt.dog_enable) {
-        c++;
+    auto dog_f = [&](){
         Mat dog1, dog2;
         dog1 = dog(image1, opt.dog_ksize, opt.dog_sigma1, opt.dog_sigma2);
         dog2 = dog(image2, opt.dog_ksize, opt.dog_sigma1, opt.dog_sigma2);
 
-        cc = crossCorr(dog1, dog2, opt.padding);
+        Mat cc = crossCorr(dog1, dog2, opt.padding);
 
         minMaxLoc(cc, &min, &max, nullptr, &maxLoc);
 
         shiftDog = maxLoc - upperLeft;
-    }
+    };
 
-
-    if (opt.canny_enable) {
-        c++;
+    auto canny_f = [&]() {
         Mat canny1, canny2;
         canny1 = canny(image1, opt.canny_ksize, opt.canny_sigma, opt.canny_alpha, opt.canny_beta);
         canny2 = canny(image2, opt.canny_ksize, opt.canny_sigma, opt.canny_alpha, opt.canny_beta);
 
-        cc = crossCorr(canny1, canny2, opt.padding);
+        Mat cc = crossCorr(canny1, canny2, opt.padding);
 
         minMaxLoc(cc, &min, &max, nullptr, &maxLoc);
 
         shiftCanny = maxLoc - upperLeft;
+    };
+
+    if (opt.bin_enable) {
+        if (opt.multiThreading) {
+            myTrheads[c] = thread(bin_f);
+        } else {
+            bin_f();
+        }
+        c++;
+    }
+
+    if (opt.dog_enable) {
+        if (opt.multiThreading) {
+            myTrheads[c] = thread(dog_f);
+        } else {
+            dog_f();
+        }
+        c++;
+    }
+
+
+    if (opt.canny_enable) {
+        if (opt.multiThreading) {
+            myTrheads[c] = thread(canny_f);
+        } else {
+            canny_f();
+        }
+        c++;
+    }
+
+    if (opt.multiThreading) {
+        for (int i = 0; i < c; ++i) {
+            myTrheads[i].join();
+        }
     }
 
     Point2f finalShift = shiftBin + shiftDog + shiftCanny;
