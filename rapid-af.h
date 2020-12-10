@@ -5,6 +5,7 @@
 
 using namespace cv;
 
+namespace rapid_af {
 struct Options {
     bool multiThreading = true;
     uint padding = 100;
@@ -34,5 +35,6 @@ bool checkImageQuality(Mat &image, double stdVarThreshold, double sRatioThreshol
 
 Point2f align(const Mat &image1, const Mat &image2,
               const struct Options opt, bool * const ok = nullptr);
+}
 
 #endif // RAPID_AF_H

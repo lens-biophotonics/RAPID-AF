@@ -2,11 +2,12 @@
 
 #include <opencv2/opencv.hpp>
 
-#include "rapid-af.h"
+#include <rapid-af.h>
 
 
 using namespace cv;
 using namespace std;
+using namespace rapid_af;
 
 
 Mat merge(Mat image1, Mat image2, Point2f shift)

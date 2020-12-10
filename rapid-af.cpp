@@ -1,12 +1,13 @@
+#include "rapid-af.h"
+
 #include <algorithm>
 #include <thread>
 #include <vector>
 
-#include "rapid-af.h"
-
 using namespace cv;
 using namespace std;
 
+namespace rapid_af {
 Mat binarize(const Mat &image, double percentage)
 {
     Mat thrImage;
@@ -190,7 +191,6 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
         c++;
     }
 
-
     if (opt.canny_enable) {
         if (opt.multiThreading) {
             myTrheads[c] = thread(canny_f, c);
@@ -225,3 +225,4 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
 
     return finalShift;
 }
+} // namespace rapid_af
