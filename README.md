@@ -1,6 +1,8 @@
 # RAPID-AF
 > Real-time image-based autofocus for all wide-field optical microscopy systems
 
+Library to perform image registration needed for RAPID autofocus system.
+
 ## How to build this project
 On Ubuntu, install the following packages:
 ```bash
