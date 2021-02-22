@@ -25,7 +25,7 @@ implementation.
 ## What this code does NOT
 It does not include packages for image grabbing (or
 camera management in general). Also, no code for actual defocus correction
-(e.g. by moving the detection objective) is provided. These modules depends on
+(e.g. by moving the detection objective) is provided. These modules depend on
 the hardware used in the microscope.
 
 
