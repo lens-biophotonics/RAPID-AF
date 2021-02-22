@@ -2,19 +2,31 @@
 > Real-time image-based autofocus for all wide-field optical microscopy systems
 > 
 
-RAPID (Rapid Autofocusing via Pupil-split Image phase Detection) is an implementation of the phase detection principle for defocus measurement, applicable to all wide-field optical microscopes including light-sheet ones. 
-In RAPID, two images of the same field of view are formed selecting the rays passing through two distinct portions of the 
-system pupil. The mutual displacement between these images (the 'phase') is linearly proportional to the defocus.
+RAPID (Rapid Autofocusing via Pupil-split Image phase Detection) is an
+implementation of the phase detection principle for defocus measurement,
+applicable to all wide-field optical microscopes including light-sheet ones. In
+RAPID, two images of the same field of view are formed selecting the rays
+passing through two distinct portions of the system pupil. The mutual
+displacement between these images (the 'phase') is linearly proportional to the
+defocus.
 
-The details of the optical setup can be found in https://www.biorxiv.org/content/10.1101/170555v1.
-The code reported here, exploiting OpenCV, can be used to implement efficient image registration between the two pupil-split images.
+The details of the optical setup can be found in
+https://www.biorxiv.org/content/10.1101/170555v1. The code reported here,
+exploiting OpenCV, can be used to implement efficient image registration
+between the two pupil-split images.
 
 
 ## What this code does
-It performs optional image pre-processing, and computes cross-correlation to find mutual image displacement. This is the most general part of the RAPID concept, which is independent from the actual optical implementation.
+It performs optional image pre-processing, and computes
+cross-correlation to find mutual image displacement. This is the most general
+part of the RAPID concept, which is independent from the actual optical
+implementation.
 
 ## What this code does NOT
-It does not include packages for image grabbing (or camera management in general). Also, no code for actual defocus correction (e.g. by moving the detection objective) is provided. These modules depends on the hardware used in the microscope.
+It does not include packages for image grabbing (or
+camera management in general). Also, no code for actual defocus correction
+(e.g. by moving the detection objective) is provided. These modules depends on
+the hardware used in the microscope.
 
 
 ## How to build this project
@@ -33,4 +45,5 @@ make
 sudo make install
 ```
 
-This will install a binary named `rapid-af` and a library named `librapid-af.so`.
+This will install a binary named `rapid-af` and a library named
+`librapid-af.so`.
