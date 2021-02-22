@@ -47,3 +47,7 @@ sudo make install
 
 This will install a binary named `rapid-af` and a library named
 `librapid-af.so`.
+
+
+## Documentation
+[https://lens-biophotonics.github.io/RAPID-AF](https://lens-biophotonics.github.io/RAPID-AF)
