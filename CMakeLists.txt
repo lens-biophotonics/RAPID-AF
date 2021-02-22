@@ -13,6 +13,7 @@ set(OTHER_FILES
     .gitignore
     uncrustify.cfg
     README.md
+    Doxyfile
 )
 
 add_custom_target(project-related-files SOURCES ${OTHER_FILES})
