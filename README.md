@@ -16,12 +16,14 @@ exploiting OpenCV, can be used to implement efficient image registration
 between the two pupil-split images.
 
 
-## What this code does It performs optional image pre-processing, and computes
+## What this code does
+It performs optional image pre-processing, and computes
 cross-correlation to find mutual image displacement. This is the most general
 part of the RAPID concept, which is independent from the actual optical
 implementation.
 
-## What this code does NOT It does not include packages for image grabbing (or
+## What this code does NOT
+It does not include packages for image grabbing (or
 camera management in general). Also, no code for actual defocus correction
 (e.g. by moving the detection objective) is provided. These modules depend on
 the hardware used in the microscope.
