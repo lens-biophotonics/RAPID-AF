@@ -12,6 +12,7 @@ find_package(Threads REQUIRED)
 set(OTHER_FILES
     .gitignore
     uncrustify.cfg
+    README.md
 )
 
 add_custom_target(project-related-files SOURCES ${OTHER_FILES})
