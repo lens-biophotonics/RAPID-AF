@@ -8,6 +8,15 @@ using namespace cv;
 using namespace std;
 
 namespace rapid_af {
+
+/**
+ * @brief binarizes image at given percentage of maximum value
+ * @param image input image
+ * @param percentage percentage of image maximum
+ * @return binarized image
+ *
+ * Binarizes input image using as threshold a user-specified percenntage of image maximum value
+ */
 Mat binarize(const Mat &image, double percentage)
 {
     Mat thrImage;
@@ -19,6 +28,19 @@ Mat binarize(const Mat &image, double percentage)
     return thrImage;
 }
 
+/**
+ * @brief applies a Difference-of-Gaussians (DoG) filter
+ * @param image input image
+ * @param ksize size of the filter kernel
+ * @param sigma1 sigma of the first Gaussian
+ * @param sigma2 sigmma of the second Gaussian
+ * @return filtered image
+ *
+ * Applies a Difference-of-Gaussians (DoG) filter to the input image.
+ * The width of the two Gaussians are specified by the user.
+ * This filter enhances structures with spatial scales intermediate between the two sigmas.
+ * More details can be found at https://en.wikipedia.org/wiki/Difference_of_Gaussians
+ */
 Mat dog(const Mat &image, int ksize, double sigma1, double sigma2)
 {
     Mat filter1, filter2;
@@ -35,6 +57,23 @@ Mat dog(const Mat &image, int ksize, double sigma1, double sigma2)
     return ret;
 }
 
+/**
+ * @brief applies Canny edge detection filter
+ * @param image input image
+ * @param ksize size of the smoothing Gaussian kernel
+ * @param sigma sigma of the smoothing Gaussian kernel
+ * @param alpha minimum value for hysteresis thresholding
+ * @param beta maximum value for hysteresis thresholding
+ * @return filtered image
+ *
+ * Applies Canny edge detection filter to the input image.
+ * First, the image is smoothed using a Gaussian filter of user-specified size.
+ * Then, bidimensional gradient is computed, and local maxima are identified.
+ * To refine edge detection, hysteresis threshold is performed:
+ * only those segments which are completely above the minimum value
+ * and partially above the maximum value are retained.
+ * More details can be found at https://docs.opencv.org/master/da/d22/tutorial_py_canny.html
+ */
 Mat canny(const Mat &image, int ksize, double sigma, double alpha, double beta)
 {
     Mat filter, edges, filtered;
@@ -46,6 +85,16 @@ Mat canny(const Mat &image, int ksize, double sigma, double alpha, double beta)
     return edges;
 }
 
+/**
+ * @brief computes cross-correlation between the two input images
+ * @param image1
+ * @param image2
+ * @param padding size of image padding
+ * @return cross-correlation image
+ *
+ * Computes cross-correlation between the two input images.
+ * The search area is specified by the padding parameter.
+ */
 Mat crossCorr(const Mat &image1, const Mat &image2, const uint padding)
 {
     Mat temp1, temp2, result, padded;
@@ -60,7 +109,15 @@ Mat crossCorr(const Mat &image1, const Mat &image2, const uint padding)
     return result;
 }
 
-// adapted from https://github.com/opencv/opencv/blob/master/samples/cpp/dft.cpp
+/**
+ * @brief computes power spectrum of the input image
+ * @param I input image
+ * @return power spectrum with frequencies origin at the image center
+ *
+ * Computes the power spectrum of the input image, and swaps the quadrants in order to place the frequencies origin
+ * at the image center.
+ * adapted from https://github.com/opencv/opencv/blob/master/samples/cpp/dft.cpp
+ */
 Mat dftSpectrum(const Mat &I)
 {
     Mat padded;                            //expand input image to optimal size
@@ -102,6 +159,16 @@ Mat dftSpectrum(const Mat &I)
     return mag;
 }
 
+/**
+ * @brief computes the fraction of total spectral power in a given frequency range
+ * @param spectrum power spectrum image
+ * @param radius center of the frequency range
+ * @param thickness width of the frequency range
+ * @return fraction of spectral power in the given range
+ *
+ * Computes the fraction of total spectral power in a given frequency range.
+ * This information can be used as a measure of image quality.
+ */
 double spectralRatio(const Mat &spectrum, int radius, int thickness)
 {
     Mat annularMask = Mat::zeros(spectrum.size(), CV_8U);
@@ -113,6 +180,19 @@ double spectralRatio(const Mat &spectrum, int radius, int thickness)
     return sum(masked).val[0] / sum(spectrum).val[0];
 }
 
+/**
+ * @brief checks image quality before perform registration
+ * @param image input image
+ * @param stdVarThreshold threshold for the coefficient of variation
+ * @param sRatioThreshold threshold for the spectral ratio
+ * @param radius center of the frequecy range
+ * @param thickness width of the frequecy range
+ * @return boolean indicating if quality check has been passed or not
+ *
+ * Performs image quality check using two different image quality metrics: coefficient of variation (standard deviation / mean)
+ * and fraction of total spectral power in given frequency range. If both values are above given thresholds,
+ * the function returns a True boolean value, otherwise it returns a False.
+ */
 bool checkImageQuality(Mat &image, double stdVarThreshold, double sRatioThreshold, int radius,
                        int thickness)
 {
@@ -126,6 +206,19 @@ bool checkImageQuality(Mat &image, double stdVarThreshold, double sRatioThreshol
     return (stdVar > stdVarThreshold) && (sRatio > sRatioThreshold);
 }
 
+/**
+ * @brief find the mutual displacement between two images
+ * @param image1 input image 1
+ * @param image2 input image 2
+ * @param opt struct type containing registration options
+ * @param ok reference to a boolean that reports if registration was successful or not
+ * @return 2d displacement
+ *
+ * Performs registration between the input images. In the struct opt, the user specifies which pre-processing method
+ * should be used (potentially also a combination of multiple methods), and the parameters of the different methods.
+ * The registration is considered 'successful' if the displacements computed using different pre-processing methods
+ * are consistent within a user-specified range.
+ */
 Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bool * const ok)
 {
     double min, max;
