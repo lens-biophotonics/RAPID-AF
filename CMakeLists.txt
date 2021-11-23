@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.1)
 
 project(RAPID-AF)
 
+include(GNUInstallDirs)
+
 set(CMAKE_CXX_STANDARD 11)
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
@@ -27,7 +29,7 @@ install(TARGETS rapid-af
 install(FILES rapid-af.h
         DESTINATION include
 )
-install(EXPORT rapidAfTargets DESTINATION lib/cmake)
+install(EXPORT rapidAfTargets DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/rapid-af)
 
 target_include_directories(rapid-af
     PUBLIC
@@ -39,7 +41,6 @@ target_link_libraries(rapid-af
     ${OpenCV_LIBS}
     Threads::Threads
 )
-
 
 add_executable(rapid-af-bin main.cpp)
 target_link_libraries(rapid-af-bin
@@ -56,3 +57,12 @@ target_include_directories(rapid-af-bin
 )
 
 install(TARGETS rapid-af-bin DESTINATION bin)
+
+install(
+  FILES
+    rapid-af-config.cmake
+  DESTINATION
+    ${CMAKE_INSTALL_LIBDIR}/cmake/rapid-af
+  COMPONENT
+    Devel
+)
