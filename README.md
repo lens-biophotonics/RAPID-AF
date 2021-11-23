@@ -54,5 +54,33 @@ This will install a binary named `rapid-af` and a library named
 `librapid-af.so`.
 
 
+## How to use rapid-af
+
+In your `CMakeLists.txt`, add the following:
+```cmake
+find_package(rapid-af REQUIRED)
+```
+
+Then, when linking libraries to your executable:
+```cmake
+add_executable(myexecutable main.cpp)
+target_link_libraries(myexecutable
+    rapid-af
+)
+```
+
+In your source file:
+```cpp
+#include <rapid-af.h>
+
+void main() {
+    cv::Mat i1, i2;
+    bool ok;
+    const struct rapid_af::Options opt;
+    cv::Point2f shift = rapid_af::align(i1, i2, opt, &ok);
+}
+```
+
+
 ## Documentation
 [https://lens-biophotonics.github.io/RAPID-AF](https://lens-biophotonics.github.io/RAPID-AF)
