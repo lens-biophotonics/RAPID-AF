@@ -1,6 +1,6 @@
-# RAPID-AF
+# rapid-af
 > Real-time image-based autofocus for all wide-field optical microscopy systems
-> 
+>
 
 RAPID (Rapid Autofocusing via Pupil-split Image phase Detection) is an
 implementation of the phase detection principle for defocus measurement,
