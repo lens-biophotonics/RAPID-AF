@@ -25,7 +25,7 @@ install(TARGETS rapid-af
     EXPORT rapidAfTargets
 )
 install(FILES rapid-af.h
-        DESTINATION inlcude
+        DESTINATION include
 )
 install(EXPORT rapidAfTargets DESTINATION lib/cmake)
 
