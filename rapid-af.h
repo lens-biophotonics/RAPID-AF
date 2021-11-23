@@ -3,8 +3,6 @@
 
 #include <opencv2/opencv.hpp>
 
-using namespace cv;
-
 namespace rapid_af {
 struct Options {
     bool multiThreading = true;      //!< Compute image preprocessing using multiple threads
@@ -26,15 +24,16 @@ struct Options {
     double canny_beta = 1;     //!< Higher threshold for hysteresis thresholding
 };
 
-Mat binarize(const Mat &image, double percentage);
-Mat dog(const Mat &image, int ksize, double sigma1, double sigma2);
-Mat canny(const Mat &image, int ksize, double sigma, double alpha, double beta);
+cv::Mat binarize(const cv::Mat &image, double percentage);
+cv::Mat dog(const cv::Mat &image, int ksize, double sigma1, double sigma2);
+cv::Mat canny(const cv::Mat &image, int ksize, double sigma, double alpha, double beta);
 
-Mat crossCorr(const Mat &image1, const Mat &image2, const uint padding);
-bool checkImageQuality(Mat &image, double stdVarThreshold, double sRatioThreshold, int radius, int thickness);
+cv::Mat crossCorr(const cv::Mat &image1, const cv::Mat &image2, const uint padding);
+bool checkImageQuality(cv::Mat &image, double stdVarThreshold, double sRatioThreshold, int radius,
+                       int thickness);
 
-Point2f align(const Mat &image1, const Mat &image2,
-              const struct Options opt, bool * const ok = nullptr);
+cv::Point2f align(const cv::Mat &image1, const cv::Mat &image2, const struct Options opt,
+                  bool * const ok = nullptr);
 }
 
 #endif // RAPID_AF_H
