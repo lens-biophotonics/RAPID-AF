@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RAPID-AF: rapid_af Namespace Reference</title>
+<title>rapid-af: rapid_af Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">RAPID-AF
+   <div id="projectname">rapid-af
    </div>
    <div id="projectbrief">Real-time image-based autofocus for all wide-field optical microscopy systems</div>
   </td>
@@ -101,10 +101,62 @@ Functions</h2></td></tr>
 <tr class="memitem:a99ad86e3ddee37eb8442243401ecda53"><td class="memItemLeft" align="right" valign="top">Point2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#a99ad86e3ddee37eb8442243401ecda53">align</a> (const Mat &amp;image1, const Mat &amp;image2, const struct <a class="el" href="structrapid__af_1_1_options.html">Options</a> opt, bool *const ok)</td></tr>
 <tr class="memdesc:a99ad86e3ddee37eb8442243401ecda53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the mutual displacement between two images.  <a href="namespacerapid__af.html#a99ad86e3ddee37eb8442243401ecda53">More...</a><br /></td></tr>
 <tr class="separator:a99ad86e3ddee37eb8442243401ecda53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75ccebea1981455409010e9c4740ed85"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#a75ccebea1981455409010e9c4740ed85">binarize</a> (const cv::Mat &amp;image, double percentage)</td></tr>
+<tr class="separator:a75ccebea1981455409010e9c4740ed85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af965708ecf283b9a76f72be0a093b261"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#af965708ecf283b9a76f72be0a093b261">dog</a> (const cv::Mat &amp;image, int ksize, double sigma1, double sigma2)</td></tr>
+<tr class="separator:af965708ecf283b9a76f72be0a093b261"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a020436fe29a39bcd211281bdf9ad31f4"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#a020436fe29a39bcd211281bdf9ad31f4">canny</a> (const cv::Mat &amp;image, int ksize, double sigma, double alpha, double beta)</td></tr>
+<tr class="separator:a020436fe29a39bcd211281bdf9ad31f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ed54b0243528cbd6bd85b21508ca50a"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#a9ed54b0243528cbd6bd85b21508ca50a">crossCorr</a> (const cv::Mat &amp;image1, const cv::Mat &amp;image2, const uint padding)</td></tr>
+<tr class="separator:a9ed54b0243528cbd6bd85b21508ca50a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa78139b284a06d3ce6a67629c6741eae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#aa78139b284a06d3ce6a67629c6741eae">checkImageQuality</a> (cv::Mat &amp;image, double stdVarThreshold, double sRatioThreshold, int radius, int thickness)</td></tr>
+<tr class="separator:aa78139b284a06d3ce6a67629c6741eae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad875133dccf4a87b9cdcdea3f2c2e674"><td class="memItemLeft" align="right" valign="top">cv::Point2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#ad875133dccf4a87b9cdcdea3f2c2e674">align</a> (const cv::Mat &amp;image1, const cv::Mat &amp;image2, const struct <a class="el" href="structrapid__af_1_1_options.html">Options</a> opt, bool *const ok=nullptr)</td></tr>
+<tr class="separator:ad875133dccf4a87b9cdcdea3f2c2e674"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ad875133dccf4a87b9cdcdea3f2c2e674"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad875133dccf4a87b9cdcdea3f2c2e674">&#9670;&nbsp;</a></span>align() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Point2f rapid_af::align </td>
+          <td>(</td>
+          <td class="paramtype">const cv::Mat &amp;&#160;</td>
+          <td class="paramname"><em>image1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const cv::Mat &amp;&#160;</td>
+          <td class="paramname"><em>image2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="structrapid__af_1_1_options.html">Options</a>&#160;</td>
+          <td class="paramname"><em>opt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool *const&#160;</td>
+          <td class="paramname"><em>ok</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a99ad86e3ddee37eb8442243401ecda53"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99ad86e3ddee37eb8442243401ecda53">&#9670;&nbsp;</a></span>align()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a99ad86e3ddee37eb8442243401ecda53">&#9670;&nbsp;</a></span>align() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -156,8 +208,36 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a75ccebea1981455409010e9c4740ed85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75ccebea1981455409010e9c4740ed85">&#9670;&nbsp;</a></span>binarize() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat rapid_af::binarize </td>
+          <td>(</td>
+          <td class="paramtype">const cv::Mat &amp;&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>percentage</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a3e4429dfece496a655013d937525409b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e4429dfece496a655013d937525409b">&#9670;&nbsp;</a></span>binarize()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e4429dfece496a655013d937525409b">&#9670;&nbsp;</a></span>binarize() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -195,8 +275,54 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a020436fe29a39bcd211281bdf9ad31f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a020436fe29a39bcd211281bdf9ad31f4">&#9670;&nbsp;</a></span>canny() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat rapid_af::canny </td>
+          <td>(</td>
+          <td class="paramtype">const cv::Mat &amp;&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ksize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>alpha</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>beta</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a4eb63885de099138949564f246230bb1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4eb63885de099138949564f246230bb1">&#9670;&nbsp;</a></span>canny()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eb63885de099138949564f246230bb1">&#9670;&nbsp;</a></span>canny() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -255,8 +381,54 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="aa78139b284a06d3ce6a67629c6741eae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa78139b284a06d3ce6a67629c6741eae">&#9670;&nbsp;</a></span>checkImageQuality() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool rapid_af::checkImageQuality </td>
+          <td>(</td>
+          <td class="paramtype">cv::Mat &amp;&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>stdVarThreshold</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sRatioThreshold</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>radius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>thickness</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a77e8d06692034c3a39a6ccd5760abe5b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77e8d06692034c3a39a6ccd5760abe5b">&#9670;&nbsp;</a></span>checkImageQuality()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a77e8d06692034c3a39a6ccd5760abe5b">&#9670;&nbsp;</a></span>checkImageQuality() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -315,8 +487,42 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a9ed54b0243528cbd6bd85b21508ca50a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ed54b0243528cbd6bd85b21508ca50a">&#9670;&nbsp;</a></span>crossCorr() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat rapid_af::crossCorr </td>
+          <td>(</td>
+          <td class="paramtype">const cv::Mat &amp;&#160;</td>
+          <td class="paramname"><em>image1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const cv::Mat &amp;&#160;</td>
+          <td class="paramname"><em>image2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint&#160;</td>
+          <td class="paramname"><em>padding</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a73f0503ae52bd3a135eb12a1b2379cde"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73f0503ae52bd3a135eb12a1b2379cde">&#9670;&nbsp;</a></span>crossCorr()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a73f0503ae52bd3a135eb12a1b2379cde">&#9670;&nbsp;</a></span>crossCorr() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -389,8 +595,48 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="af965708ecf283b9a76f72be0a093b261"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af965708ecf283b9a76f72be0a093b261">&#9670;&nbsp;</a></span>dog() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat rapid_af::dog </td>
+          <td>(</td>
+          <td class="paramtype">const cv::Mat &amp;&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ksize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigma1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigma2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a1661c9716ff99e6e4122e5de15a9bb10"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1661c9716ff99e6e4122e5de15a9bb10">&#9670;&nbsp;</a></span>dog()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1661c9716ff99e6e4122e5de15a9bb10">&#9670;&nbsp;</a></span>dog() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
