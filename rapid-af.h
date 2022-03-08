@@ -5,12 +5,12 @@
 
 namespace rapid_af {
 struct Options {
-    bool multiThreading = true;      //!< Compute image preprocessing using multiple threads
+    bool multithreading_enable = true;      //!< Compute image preprocessing using multiple threads
     uint padding = 100;              //!< Padding used for cross correlation
-    double agreementThreshold = 5;   //!< Maximum allowed discrepancy between displacements
+    double agreement_threshold = 5;   //!< Maximum allowed discrepancy between displacements
 
     bool bin_enable = true;                 //!< Enable binarize
-    double bin_thresholdPercentage = 0.6;   //!< Percentage of maximum for binarization
+    double bin_threshold = 0.6;   //!< Threshold of maximum for binarization. Value in [0, 1].
 
     bool dog_enable = true;  //!< Enable Difference-of-Gaussians (DoG)
     int dog_ksize = 100;     //!< Kernel size for DoG

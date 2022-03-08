@@ -237,8 +237,8 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
 
     auto bin_f = [&](int j){
         Mat bin1, bin2;
-        bin1 = binarize(image1, opt.bin_thresholdPercentage);
-        bin2 = binarize(image2, opt.bin_thresholdPercentage);
+        bin1 = binarize(image1, opt.bin_threshold);
+        bin2 = binarize(image2, opt.bin_threshold);
 
         Mat cc = crossCorr(bin1, bin2, opt.padding);
 
@@ -272,7 +272,7 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
     };
 
     if (opt.bin_enable) {
-        if (opt.multiThreading) {
+        if (opt.multithreading_enable) {
             myTrheads[c] = thread(bin_f, c);
         } else {
             bin_f(c);
@@ -281,7 +281,7 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
     }
 
     if (opt.dog_enable) {
-        if (opt.multiThreading) {
+        if (opt.multithreading_enable) {
             myTrheads[c] = thread(dog_f, c);
         } else {
             dog_f(c);
@@ -290,7 +290,7 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
     }
 
     if (opt.canny_enable) {
-        if (opt.multiThreading) {
+        if (opt.multithreading_enable) {
             myTrheads[c] = thread(canny_f, c);
         } else {
             canny_f(c);
@@ -298,7 +298,7 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
         c++;
     }
 
-    if (opt.multiThreading) {
+    if (opt.multithreading_enable) {
         for (int i = 0; i < c; ++i) {
             myTrheads[i].join();
         }
@@ -316,9 +316,9 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
         double n2 = norm(Mat(shifts[0]), Mat(shifts[2]));
         double n3 = norm(Mat(shifts[1]), Mat(shifts[2]));
 
-        *ok = n1 < opt.agreementThreshold
-              && n2 < opt.agreementThreshold
-              && n3 < opt.agreementThreshold;
+        *ok = n1 < opt.agreement_threshold
+              && n2 < opt.agreement_threshold
+              && n3 < opt.agreement_threshold;
     }
 
     return finalShift;

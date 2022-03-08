@@ -81,12 +81,12 @@ int main(int argc, char** argv)
     Mat image2 = imread(image2String, IMREAD_ANYDEPTH);
 
     struct Options opt;
-    opt.multiThreading = parser.get<bool>("mt-enable");
+    opt.multithreading_enable = parser.get<bool>("mt-enable");
     opt.padding = parser.get<int>("padding");
-    opt.agreementThreshold = parser.get<int>("agreement");
+    opt.agreement_threshold = parser.get<int>("agreement");
 
     opt.bin_enable = parser.get<bool>("bin-enable");
-    opt.bin_thresholdPercentage = parser.get<double>("bin-threshold-perc");
+    opt.bin_threshold = parser.get<double>("bin-threshold-perc");
 
     opt.dog_enable = parser.get<bool>("dog-enable");
     opt.dog_ksize = parser.get<double>("dog-ksize");
