@@ -80,7 +80,7 @@ int main(int argc, char** argv)
     Mat image1 = imread(image1String, IMREAD_ANYDEPTH);
     Mat image2 = imread(image2String, IMREAD_ANYDEPTH);
 
-    struct Options opt;
+    struct AlignOptions opt;
     opt.multithreading_enable = parser.get<bool>("mt-enable");
     opt.padding = parser.get<int>("padding");
     opt.agreement_threshold = parser.get<int>("agreement");

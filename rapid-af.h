@@ -4,7 +4,7 @@
 #include <opencv2/opencv.hpp>
 
 namespace rapid_af {
-struct Options {
+struct AlignOptions {
     bool multithreading_enable = true;      //!< Compute image preprocessing using multiple threads
     uint padding = 100;              //!< Padding used for cross correlation
     double agreement_threshold = 5;   //!< Maximum allowed discrepancy between displacements
@@ -36,7 +36,7 @@ cv::Mat crossCorr(const cv::Mat &image1, const cv::Mat &image2, const uint paddi
 bool checkImageQuality(cv::Mat &image, double stdVarThreshold, double sRatioThreshold, int radius,
                        int thickness);
 
-cv::Point2f align(const cv::Mat &image1, const cv::Mat &image2, const struct Options opt,
+cv::Point2f align(const cv::Mat &image1, const cv::Mat &image2, const struct AlignOptions opt,
                   bool * const ok = nullptr);
 }
 

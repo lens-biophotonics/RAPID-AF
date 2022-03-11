@@ -226,7 +226,7 @@ bool checkImageQuality(Mat &image, double stdVarThreshold, double sRatioThreshol
  * computed using different pre-processing methods are consistent within a
  * user-specified range.
  */
-Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bool * const ok)
+Point2f align(const Mat &image1, const Mat &image2, const struct AlignOptions opt, bool * const ok)
 {
     double min, max;
     Point maxLoc;
