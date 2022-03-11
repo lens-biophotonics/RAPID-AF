@@ -9,6 +9,10 @@ struct Options {
     uint padding = 100;              //!< Padding used for cross correlation
     double agreement_threshold = 5;   //!< Maximum allowed discrepancy between displacements
 
+    bool prefilter_enable = true;  //!< Apply Gaussian prefiltering
+    double prefilter_ksize = 20;   //!< Kernel size for Gaussian filter
+    double prefilter_sigma = 5;    //!< Sigma for Gaussian filter
+
     bool bin_enable = true;                 //!< Enable binarize
     double bin_threshold = 0.6;   //!< Threshold of maximum for binarization. Value in [0, 1].
 

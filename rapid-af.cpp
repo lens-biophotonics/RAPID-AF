@@ -237,11 +237,22 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
 
     thread myTrheads[3];
 
+    Mat i1, i2;
+    if (opt.prefilter_enable) {
+        Mat filter;
+        mulTransposed(getGaussianKernel(opt.prefilter_ksize, opt.prefilter_sigma), filter, false);
+        filter2D(image1, i1, -1, filter);
+        filter2D(image2, i2, -1, filter);
+    } else {
+        i1 = image1;
+        i2 = image2;
+    }
+
     auto bin_f = [&](int j){
         Mat bin1, bin2;
         try {
-            bin1 = binarize(image1, opt.bin_threshold);
-            bin2 = binarize(image2, opt.bin_threshold);
+            bin1 = binarize(i1, opt.bin_threshold);
+            bin2 = binarize(i2, opt.bin_threshold);
 
             Mat cc = crossCorr(bin1, bin2, opt.padding);
 
@@ -256,8 +267,8 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
     auto dog_f = [&](int j){
         Mat dog1, dog2, cc;
         try {
-            dog1 = dog(image1, opt.dog_ksize, opt.dog_sigma1, opt.dog_sigma2);
-            dog2 = dog(image2, opt.dog_ksize, opt.dog_sigma1, opt.dog_sigma2);
+            dog1 = dog(i1, opt.dog_ksize, opt.dog_sigma1, opt.dog_sigma2);
+            dog2 = dog(i2, opt.dog_ksize, opt.dog_sigma1, opt.dog_sigma2);
 
             Mat cc = crossCorr(dog1, dog2, opt.padding);
 
@@ -272,8 +283,8 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
     auto canny_f = [&](int j) {
         Mat canny1, canny2, cc;
         try {
-            canny1 = canny(image1, opt.canny_ksize, opt.canny_sigma, opt.canny_alpha, opt.canny_beta);
-            canny2 = canny(image2, opt.canny_ksize, opt.canny_sigma, opt.canny_alpha, opt.canny_beta);
+            canny1 = canny(i1, opt.canny_ksize, opt.canny_sigma, opt.canny_alpha, opt.canny_beta);
+            canny2 = canny(i2, opt.canny_ksize, opt.canny_sigma, opt.canny_alpha, opt.canny_beta);
             Mat cc = crossCorr(canny1, canny2, opt.padding);
 
             minMaxLoc(cc, &min, &max, nullptr, &maxLoc);

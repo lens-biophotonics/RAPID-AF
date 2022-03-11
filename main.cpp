@@ -85,6 +85,10 @@ int main(int argc, char** argv)
     opt.padding = parser.get<int>("padding");
     opt.agreement_threshold = parser.get<int>("agreement");
 
+    opt.prefilter_enable = parser.get<bool>("pf-enable");
+    opt.prefilter_ksize = parser.get<int>("pf-ksize");
+    opt.prefilter_sigma = parser.get<double>("pf-sigma");
+
     opt.bin_enable = parser.get<bool>("bin-enable");
     opt.bin_threshold = parser.get<double>("bin-threshold-perc");
 
@@ -114,22 +118,9 @@ int main(int argc, char** argv)
         }
     }
 
-    Mat i1, i2;
-    if (parser.get<bool>("pf-enable")) {
-        Mat filter;
-        int ksize = parser.get<int>("pf-ksize");
-        double sigma = parser.get<double>("pf-sigma");
-        mulTransposed(getGaussianKernel(ksize, sigma), filter, false);
-        filter2D(image1, i1, -1, filter);
-        filter2D(image2, i2, -1, filter);
-    } else {
-        i1 = image1;
-        i2 = image2;
-    }
-
     bool ok;
 
-    Point2f shift = align(i1, i2, opt, &ok);
+    Point2f shift = align(image1, image2, opt, &ok);
 
     auto end = chrono::steady_clock::now();
 
