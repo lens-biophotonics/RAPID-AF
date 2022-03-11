@@ -7,6 +7,8 @@
 using namespace cv;
 using namespace std;
 
+static std::exception_ptr teptr = nullptr;
+
 namespace rapid_af {
 /**
  * @brief Binarize image at given percentage of maximum value
@@ -237,36 +239,48 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
 
     auto bin_f = [&](int j){
         Mat bin1, bin2;
-        bin1 = binarize(image1, opt.bin_threshold);
-        bin2 = binarize(image2, opt.bin_threshold);
+        try {
+            bin1 = binarize(image1, opt.bin_threshold);
+            bin2 = binarize(image2, opt.bin_threshold);
 
-        Mat cc = crossCorr(bin1, bin2, opt.padding);
+            Mat cc = crossCorr(bin1, bin2, opt.padding);
 
-        minMaxLoc(cc, &min, &max, nullptr, &maxLoc);
-
+            minMaxLoc(cc, &min, &max, nullptr, &maxLoc);
+        } catch(cv::Exception e) {
+            teptr = std::current_exception();
+            return;
+        }
         shifts[j] = maxLoc - upperLeft;
     };
 
     auto dog_f = [&](int j){
-        Mat dog1, dog2;
-        dog1 = dog(image1, opt.dog_ksize, opt.dog_sigma1, opt.dog_sigma2);
-        dog2 = dog(image2, opt.dog_ksize, opt.dog_sigma1, opt.dog_sigma2);
+        Mat dog1, dog2, cc;
+        try {
+            dog1 = dog(image1, opt.dog_ksize, opt.dog_sigma1, opt.dog_sigma2);
+            dog2 = dog(image2, opt.dog_ksize, opt.dog_sigma1, opt.dog_sigma2);
 
-        Mat cc = crossCorr(dog1, dog2, opt.padding);
+            Mat cc = crossCorr(dog1, dog2, opt.padding);
 
-        minMaxLoc(cc, &min, &max, nullptr, &maxLoc);
-
+            minMaxLoc(cc, &min, &max, nullptr, &maxLoc);
+        } catch(cv::Exception e) {
+            teptr = std::current_exception();
+            return;
+        }
         shifts[j] = maxLoc - upperLeft;
     };
 
     auto canny_f = [&](int j) {
-        Mat canny1, canny2;
-        canny1 = canny(image1, opt.canny_ksize, opt.canny_sigma, opt.canny_alpha, opt.canny_beta);
-        canny2 = canny(image2, opt.canny_ksize, opt.canny_sigma, opt.canny_alpha, opt.canny_beta);
+        Mat canny1, canny2, cc;
+        try {
+            canny1 = canny(image1, opt.canny_ksize, opt.canny_sigma, opt.canny_alpha, opt.canny_beta);
+            canny2 = canny(image2, opt.canny_ksize, opt.canny_sigma, opt.canny_alpha, opt.canny_beta);
+            Mat cc = crossCorr(canny1, canny2, opt.padding);
 
-        Mat cc = crossCorr(canny1, canny2, opt.padding);
-
-        minMaxLoc(cc, &min, &max, nullptr, &maxLoc);
+            minMaxLoc(cc, &min, &max, nullptr, &maxLoc);
+        } catch(cv::Exception e) {
+            teptr = std::current_exception();
+            return;
+        }
 
         shifts[j] = maxLoc - upperLeft;
     };
@@ -301,6 +315,10 @@ Point2f align(const Mat &image1, const Mat &image2, const struct Options opt, bo
     if (opt.multithreading_enable) {
         for (int i = 0; i < c; ++i) {
             myTrheads[i].join();
+        }
+
+        if (teptr) {
+            std::rethrow_exception(teptr);
         }
     }
 
