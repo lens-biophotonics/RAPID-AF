@@ -105,14 +105,15 @@ int main(int argc, char** argv)
 
     auto begin = chrono::steady_clock::now();
 
-    double stdVarThreshold = parser.get<double>("q-std");
-    double sRatioThreshold = parser.get<double>("q-sratio");
-    int radius = parser.get<int>("q-sratio-radius");
-    int thickness = parser.get<int>("q-sratio-thickness");
-
     if (parser.get<bool>("q")) {
-        if (!checkImageQuality(image1, stdVarThreshold, sRatioThreshold, radius, thickness)
-            || !checkImageQuality(image2, stdVarThreshold, sRatioThreshold, radius, thickness)) {
+        ImageQualityOptions iqOpt;
+
+        iqOpt.sigma_threshold = parser.get<double>("q-std");
+        iqOpt.sratio_threshold = parser.get<double>("q-sratio");
+        iqOpt.sratio_radius = parser.get<int>("q-sratio-radius");
+        iqOpt.sratio_thickness = parser.get<int>("q-sratio-thickness");
+
+        if (!checkImageQuality(image1, iqOpt)|| !checkImageQuality(image2, iqOpt)) {
             cerr << "Error: Low image quality (-q option)" << endl;
             exit(EXIT_FAILURE);
         }

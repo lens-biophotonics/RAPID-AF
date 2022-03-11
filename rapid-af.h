@@ -28,13 +28,19 @@ struct AlignOptions {
     double canny_beta = 1;     //!< Higher threshold for hysteresis thresholding
 };
 
+struct ImageQualityOptions {
+    double sigma_threshold = 0.1;     //!< minimum standard deviation
+    double sratio_threshold = 1e-4;   //!< minimum spectral ratio (within annular ring)
+    int sratio_radius = 30;           //!< radius for spectral ratio
+    int sratio_thickness = 5;         //!< thickness for spectral ratio
+};
+
 cv::Mat binarize(const cv::Mat &image, double percentage);
 cv::Mat dog(const cv::Mat &image, int ksize, double sigma1, double sigma2);
 cv::Mat canny(const cv::Mat &image, int ksize, double sigma, double alpha, double beta);
 
 cv::Mat crossCorr(const cv::Mat &image1, const cv::Mat &image2, const uint padding);
-bool checkImageQuality(cv::Mat &image, double stdVarThreshold, double sRatioThreshold, int radius,
-                       int thickness);
+bool checkImageQuality(cv::Mat &image, ImageQualityOptions options);
 
 cv::Point2f align(const cv::Mat &image1, const cv::Mat &image2, const struct AlignOptions opt,
                   bool * const ok = nullptr);

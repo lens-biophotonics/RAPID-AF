@@ -198,17 +198,16 @@ double spectralRatio(const Mat &spectrum, int radius, int thickness)
  * thresholds, the function returns a True boolean value, otherwise it returns
  * a False.
  */
-bool checkImageQuality(Mat &image, double stdVarThreshold, double sRatioThreshold, int radius,
-                       int thickness)
+bool checkImageQuality(Mat &image, ImageQualityOptions options)
 {
     Scalar mean, stddev;
 
     meanStdDev(image, mean, stddev);
 
     double stdVar = stddev.val[0] / mean.val[0];
-    double sRatio = spectralRatio(dftSpectrum(image), radius, thickness);
+    double sRatio = spectralRatio(dftSpectrum(image), options.sratio_radius, options.sratio_thickness);
 
-    return (stdVar > stdVarThreshold) && (sRatio > sRatioThreshold);
+    return (stdVar > options.sigma_threshold) && (sRatio > options.sratio_threshold);
 }
 
 /**
