@@ -72,7 +72,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrapid__af_1_1_options.html">Options</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrapid__af_1_1_align_options.html">AlignOptions</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrapid__af_1_1_image_quality_options.html">ImageQualityOptions</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -95,12 +97,12 @@ Functions</h2></td></tr>
 <tr class="memitem:aca172f1492c3130292af13b7a5d8465d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#aca172f1492c3130292af13b7a5d8465d">spectralRatio</a> (const Mat &amp;spectrum, int radius, int thickness)</td></tr>
 <tr class="memdesc:aca172f1492c3130292af13b7a5d8465d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the fraction of total spectral power in a given frequency range.  <a href="namespacerapid__af.html#aca172f1492c3130292af13b7a5d8465d">More...</a><br /></td></tr>
 <tr class="separator:aca172f1492c3130292af13b7a5d8465d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77e8d06692034c3a39a6ccd5760abe5b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#a77e8d06692034c3a39a6ccd5760abe5b">checkImageQuality</a> (Mat &amp;image, double stdVarThreshold, double sRatioThreshold, int radius, int thickness)</td></tr>
-<tr class="memdesc:a77e8d06692034c3a39a6ccd5760abe5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check image quality before perform registration.  <a href="namespacerapid__af.html#a77e8d06692034c3a39a6ccd5760abe5b">More...</a><br /></td></tr>
-<tr class="separator:a77e8d06692034c3a39a6ccd5760abe5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99ad86e3ddee37eb8442243401ecda53"><td class="memItemLeft" align="right" valign="top">Point2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#a99ad86e3ddee37eb8442243401ecda53">align</a> (const Mat &amp;image1, const Mat &amp;image2, const struct <a class="el" href="structrapid__af_1_1_options.html">Options</a> opt, bool *const ok)</td></tr>
-<tr class="memdesc:a99ad86e3ddee37eb8442243401ecda53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the mutual displacement between two images.  <a href="namespacerapid__af.html#a99ad86e3ddee37eb8442243401ecda53">More...</a><br /></td></tr>
-<tr class="separator:a99ad86e3ddee37eb8442243401ecda53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01a8801b3a47324bf06f0037d120b4d8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#a01a8801b3a47324bf06f0037d120b4d8">checkImageQuality</a> (Mat &amp;image, <a class="el" href="structrapid__af_1_1_image_quality_options.html">ImageQualityOptions</a> options)</td></tr>
+<tr class="memdesc:a01a8801b3a47324bf06f0037d120b4d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check image quality before perform registration.  <a href="namespacerapid__af.html#a01a8801b3a47324bf06f0037d120b4d8">More...</a><br /></td></tr>
+<tr class="separator:a01a8801b3a47324bf06f0037d120b4d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0196d8e99362cd6fcc685eca505f0137"><td class="memItemLeft" align="right" valign="top">Point2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#a0196d8e99362cd6fcc685eca505f0137">align</a> (const Mat &amp;image1, const Mat &amp;image2, const struct <a class="el" href="structrapid__af_1_1_align_options.html">AlignOptions</a> opt, bool *const ok)</td></tr>
+<tr class="memdesc:a0196d8e99362cd6fcc685eca505f0137"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the mutual displacement between two images.  <a href="namespacerapid__af.html#a0196d8e99362cd6fcc685eca505f0137">More...</a><br /></td></tr>
+<tr class="separator:a0196d8e99362cd6fcc685eca505f0137"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75ccebea1981455409010e9c4740ed85"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#a75ccebea1981455409010e9c4740ed85">binarize</a> (const cv::Mat &amp;image, double percentage)</td></tr>
 <tr class="separator:a75ccebea1981455409010e9c4740ed85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af965708ecf283b9a76f72be0a093b261"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#af965708ecf283b9a76f72be0a093b261">dog</a> (const cv::Mat &amp;image, int ksize, double sigma1, double sigma2)</td></tr>
@@ -109,14 +111,14 @@ Functions</h2></td></tr>
 <tr class="separator:a020436fe29a39bcd211281bdf9ad31f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ed54b0243528cbd6bd85b21508ca50a"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#a9ed54b0243528cbd6bd85b21508ca50a">crossCorr</a> (const cv::Mat &amp;image1, const cv::Mat &amp;image2, const uint padding)</td></tr>
 <tr class="separator:a9ed54b0243528cbd6bd85b21508ca50a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa78139b284a06d3ce6a67629c6741eae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#aa78139b284a06d3ce6a67629c6741eae">checkImageQuality</a> (cv::Mat &amp;image, double stdVarThreshold, double sRatioThreshold, int radius, int thickness)</td></tr>
-<tr class="separator:aa78139b284a06d3ce6a67629c6741eae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad875133dccf4a87b9cdcdea3f2c2e674"><td class="memItemLeft" align="right" valign="top">cv::Point2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#ad875133dccf4a87b9cdcdea3f2c2e674">align</a> (const cv::Mat &amp;image1, const cv::Mat &amp;image2, const struct <a class="el" href="structrapid__af_1_1_options.html">Options</a> opt, bool *const ok=nullptr)</td></tr>
-<tr class="separator:ad875133dccf4a87b9cdcdea3f2c2e674"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5097e6f34faea1ed628c546dd89353b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#a5097e6f34faea1ed628c546dd89353b1">checkImageQuality</a> (cv::Mat &amp;image, <a class="el" href="structrapid__af_1_1_image_quality_options.html">ImageQualityOptions</a> options)</td></tr>
+<tr class="separator:a5097e6f34faea1ed628c546dd89353b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ef482dca38eca7a5490c81bb62a3c1a"><td class="memItemLeft" align="right" valign="top">cv::Point2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerapid__af.html#a5ef482dca38eca7a5490c81bb62a3c1a">align</a> (const cv::Mat &amp;image1, const cv::Mat &amp;image2, const struct <a class="el" href="structrapid__af_1_1_align_options.html">AlignOptions</a> opt, bool *const ok=nullptr)</td></tr>
+<tr class="separator:a5ef482dca38eca7a5490c81bb62a3c1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ad875133dccf4a87b9cdcdea3f2c2e674"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad875133dccf4a87b9cdcdea3f2c2e674">&#9670;&nbsp;</a></span>align() <span class="overload">[1/2]</span></h2>
+<a id="a5ef482dca38eca7a5490c81bb62a3c1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ef482dca38eca7a5490c81bb62a3c1a">&#9670;&nbsp;</a></span>align() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -136,7 +138,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structrapid__af_1_1_options.html">Options</a>&#160;</td>
+          <td class="paramtype">const struct <a class="el" href="structrapid__af_1_1_align_options.html">AlignOptions</a>&#160;</td>
           <td class="paramname"><em>opt</em>, </td>
         </tr>
         <tr>
@@ -155,8 +157,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a99ad86e3ddee37eb8442243401ecda53"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99ad86e3ddee37eb8442243401ecda53">&#9670;&nbsp;</a></span>align() <span class="overload">[2/2]</span></h2>
+<a id="a0196d8e99362cd6fcc685eca505f0137"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0196d8e99362cd6fcc685eca505f0137">&#9670;&nbsp;</a></span>align() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -176,7 +178,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const struct <a class="el" href="structrapid__af_1_1_options.html">Options</a>&#160;</td>
+          <td class="paramtype">const struct <a class="el" href="structrapid__af_1_1_align_options.html">AlignOptions</a>&#160;</td>
           <td class="paramname"><em>opt</em>, </td>
         </tr>
         <tr>
@@ -381,8 +383,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa78139b284a06d3ce6a67629c6741eae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa78139b284a06d3ce6a67629c6741eae">&#9670;&nbsp;</a></span>checkImageQuality() <span class="overload">[1/2]</span></h2>
+<a id="a5097e6f34faea1ed628c546dd89353b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5097e6f34faea1ed628c546dd89353b1">&#9670;&nbsp;</a></span>checkImageQuality() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -396,26 +398,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>stdVarThreshold</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>sRatioThreshold</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>radius</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>thickness</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structrapid__af_1_1_image_quality_options.html">ImageQualityOptions</a>&#160;</td>
+          <td class="paramname"><em>options</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -427,8 +411,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a77e8d06692034c3a39a6ccd5760abe5b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77e8d06692034c3a39a6ccd5760abe5b">&#9670;&nbsp;</a></span>checkImageQuality() <span class="overload">[2/2]</span></h2>
+<a id="a01a8801b3a47324bf06f0037d120b4d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01a8801b3a47324bf06f0037d120b4d8">&#9670;&nbsp;</a></span>checkImageQuality() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -442,26 +426,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>stdVarThreshold</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>sRatioThreshold</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>radius</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>thickness</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structrapid__af_1_1_image_quality_options.html">ImageQualityOptions</a>&#160;</td>
+          <td class="paramname"><em>options</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

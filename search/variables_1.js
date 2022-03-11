@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['bin_5fenable_42',['bin_enable',['../structrapid__af_1_1_options.html#a646ac5965143d6176794c55a4bd1d6dc',1,'rapid_af::Options']]],
-  ['bin_5fthresholdpercentage_43',['bin_thresholdPercentage',['../structrapid__af_1_1_options.html#acf7263b6a4ccffd830dce05ef834271f',1,'rapid_af::Options']]]
+  ['bin_5fenable_51',['bin_enable',['../structrapid__af_1_1_align_options.html#a6c0bdac685afb91298b0cd89685276bc',1,'rapid_af::AlignOptions']]],
+  ['bin_5fthreshold_52',['bin_threshold',['../structrapid__af_1_1_align_options.html#a378f39163f4432868bce4911519a8ad5',1,'rapid_af::AlignOptions']]]
 ];
