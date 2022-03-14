@@ -44,6 +44,7 @@ bool checkImageQuality(cv::Mat &image, ImageQualityOptions options);
 
 cv::Point2f align(const cv::Mat &image1, const cv::Mat &image2, const struct AlignOptions opt,
                   bool * const ok = nullptr);
+cv::Mat merge(cv::Mat image1, cv::Mat image2, cv::Point2f shift);
 }
 
 #endif // RAPID_AF_H

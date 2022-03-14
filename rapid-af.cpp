@@ -351,4 +351,35 @@ Point2f align(const Mat &image1, const Mat &image2, const struct AlignOptions op
 
     return finalShift;
 }
+
+/**
+ * @brief Produce a composite image (two channels) to highlight the quality of alignment.
+ * @param image1
+ * @param image2
+ * @param shift
+ * @return
+ */
+Mat merge(Mat image1, Mat image2, Point2f shift)
+{
+    Mat M = Mat(2, 3, CV_64FC1); // Allocate memory
+
+    M.at<double>(0, 0) =  1;  //p1
+    M.at<double>(1, 0) =  0;  //p2;
+    M.at<double>(0, 1) = 0;   //p3;
+    M.at<double>(1, 1) = 1;   //p4;
+    M.at<double>(0, 2) = shift.x;   //p5;
+    M.at<double>(1, 2) = shift.y;   //p6;
+
+    Mat shifted;
+
+    Mat channels[3];
+    channels[0] = Mat::zeros(image1.size(), CV_8UC1);
+    warpAffine(image2, channels[1], M, image2.size());
+    channels[1].convertTo(channels[1], CV_8UC1);
+    image1.convertTo(channels[2], CV_8UC1);
+
+    Mat merged;
+    merge(channels, 3, merged);
+    return merged;
+}
 } // namespace rapid_af
