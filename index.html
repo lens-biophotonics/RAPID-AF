@@ -71,7 +71,11 @@ $(function() {
 <p></p>
 </blockquote>
 <p>RAPID (Rapid Autofocusing via Pupil-split Image phase Detection) is an implementation of the phase detection principle for defocus measurement, applicable to all wide-field optical microscopes including light-sheet ones. In RAPID, two images of the same field of view are formed selecting the rays passing through two distinct portions of the system pupil. The mutual displacement between these images (the 'phase') is linearly proportional to the defocus.</p>
-<p>The details of the optical setup can be found in <a href="https://www.biorxiv.org/content/10.1101/170555v1">https://www.biorxiv.org/content/10.1101/170555v1</a>. The code reported here, exploiting OpenCV, can be used to implement efficient image registration between the two pupil-split images.</p>
+<p>The details of the optical setup can be found in </p><blockquote class="doxtable">
+<p>Silvestri, L., et al. "Universal autofocus for quantitative volumetric
+microscopy of whole mouse brains." Nature Methods 18.8 (2021): 953-958. <a href="https://doi.org/10.25493/AV5J-M46">https://doi.org/10.25493/AV5J-M46</a>. </p>
+</blockquote>
+<p>The code reported here, exploiting OpenCV, can be used to implement efficient image registration between the two pupil-split images.</p>
 <h1>What this code does</h1>
 <p>It performs optional image pre-processing, and computes cross-correlation to find mutual image displacement. This is the most general part of the RAPID concept, which is independent from the actual optical implementation.</p>
 <h1>What this code does NOT</h1>
