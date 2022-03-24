@@ -12,9 +12,12 @@ displacement between these images (the 'phase') is linearly proportional to the
 defocus.
 
 The details of the optical setup can be found in
-https://www.biorxiv.org/content/10.1101/170555v1. The code reported here,
-exploiting OpenCV, can be used to implement efficient image registration
-between the two pupil-split images.
+> Silvestri, L., et al. "Universal autofocus for quantitative volumetric
+> microscopy of whole mouse brains." Nature Methods 18.8 (2021): 953-958.
+> https://doi.org/10.25493/AV5J-M46.
+
+The code reported here, exploiting OpenCV, can be used to implement efficient
+image registration between the two pupil-split images.
 
 
 ## What this code does
